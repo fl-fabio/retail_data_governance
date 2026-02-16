@@ -8,7 +8,6 @@ ENV/
 *.py[cod]
 
 # File di dati (per non caricare CSV pesanti su GitHub)
-*.csv
 *.xlsx
 
 # Configurazione IDE
