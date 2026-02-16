@@ -1,3 +1,3 @@
-global_id,name,email,phone
-67f5c5c4-7e9c-4d13-b3e0-47739775c668,Mario Rossi,mario@email.it,333123
-56767418-ab05-43a5-9315-1c3980da7c19,Luisa Bianchi,luisa@email.it,334555
+global_id,crm_id,ecommerce_id,email
+a590453a-f92e-44b6-8a1d-72c268971321,2,A02,luisa@email.it
+562a8003-d955-4849-9e8c-3f0e2d5669ce,1,A01,mario@email.it

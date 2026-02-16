@@ -1,27 +1,28 @@
 import pandas as pd
-from master_data import Customer
-from events import publish_order
+import uuid
 
-def build_master():
-    crm = pd.read_csv('crm_customers.csv')
-    ecommerce = pd.read_csv('ecommerce_users.csv')
+crm = pd.read_csv("crm_customers.csv")
+ecommerce = pd.read_csv("ecommerce_users.csv")
 
-    master_records = []
+# Join su email come chiave di riconciliazione
+reconciled = pd.merge(
+    crm,
+    ecommerce,
+    left_on="email",
+    right_on="email_address",
+    how="outer"
+)
 
-    for _, row in crm.iterrows():
-        customer = Customer.create(
-            name=row['name'],
-            email=row['email'],
-            phone=row.get('phone')
-        )
-        master_records.append(customer)
+master_records = []
 
-    df_master = pd.DataFrame([c.__dict__ for c in master_records])
-    df_master.to_csv("customers_master.csv", index=False)
+for _, row in reconciled.iterrows():
+    master_records.append({
+        "global_id": str(uuid.uuid4()),
+        "crm_id": row.get("id"),
+        "ecommerce_id": row.get("user_id"),
+        "email": row.get("email") or row.get("email_address")
+    })
 
-    return df_master
-
-if __name__ == "__main__":
-    master_df = build_master()
-    print(master_df)
-    publish_order(customer_id="abc", total=-10)
+master_df = pd.DataFrame(master_records)
+master_df.to_csv("customers_master.csv", index=False)
+print(master_df)
