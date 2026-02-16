@@ -1,0 +1,20 @@
+# Ambiente Virtuale (cartella locale)
+.venv/
+venv/
+ENV/
+
+# Cache di Python
+**/__pycache__/
+*.py[cod]
+
+# File di dati (per non caricare CSV pesanti su GitHub)
+*.csv
+*.xlsx
+
+# Configurazione IDE
+.vscode/
+.idea/
+
+# Sistema operativo
+.DS_Store
+Thumbs.db

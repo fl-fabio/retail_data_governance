@@ -1,0 +1,27 @@
+{
+  "contract_name": "Customer",
+  "version": "1.0.0",
+  "owner": "Customer Domain Team",
+  "description": "Golden Record for unified customer identity",
+  "fields": {
+    "global_id": {
+      "type": "string",
+      "required": true,
+      "description": "Universally unique customer identifier"
+    },
+    "name": {
+      "type": "string",
+      "required": true,
+      "description": "Full legal name of the customer"
+    },
+    "email": {
+      "type": "string",
+      "required": true,
+      "format": "email"
+    },
+    "phone": {
+      "type": "string",
+      "required": false
+    }
+  }
+}
